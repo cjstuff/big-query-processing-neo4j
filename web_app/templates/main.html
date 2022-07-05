@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="static/css/second1.css">
+<link rel="stylesheet" href="static/css/mainbutton.css">
+<div class="form-body">
+  <div class="row">
+    <div class="form-holder">
+        <p style="color : white"> Big Query Processor using Neo4j  </p>
+      <div class="form-content">
+        <div class="form-items">
+
+           <!-- <a href="http://127.0.0.1:5000/authors">
+                <button class="button button1">Get All Authors </button>
+            </a> -->
+
+            <a href="{{ url_for('keyword_discover') }}">
+                <button class="button button1">Keyword Discovery</button>
+            </a>
+
+            <a href="{{ url_for('research_profile') }}">
+                <button class="button button2">Research Profile</button>
+            </a>
+
+            <a href="{{ url_for('influential_author') }}">
+                <button class="button button3">Influential Author</button>
+            </a>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

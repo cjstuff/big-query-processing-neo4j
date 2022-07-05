@@ -1,0 +1,26 @@
+CALL apoc.periodic.iterate('UNWIND ["dblp-ref-3.json"] as file CALL apoc.load.json("./" + file) yield value return value', 'MERGE (a:Article{index:value.id}) ON CREATE SET a += apoc.map.clean(value, ["id","authors","references"],[0]) WITH a, value.authors as authors UNWIND authors as author MERGE (b:Author{name:author}) MERGE (b)-[:AUTHOR]->(a)', {batchSize: 10000, iterateList: true})
+
+[1] Extract Authors with the given Research Keyword:
+	MATCH (a:Author)-[:AUTHOR]->(b:Article) 
+	WHERE b.title =~ '(?i).*real-time RGBD.*' 
+	RETURN a,b
+
+[2] Extract the Research article name with the given keyword:
+	MATCH (b:Article)
+	WHERE b.title =~ '(?i).*real-time RGBD.*'
+	RETURN b.title
+
+[3] Create CO_AUTHOR relationship
+ 	MATCH (a:Author),(b:Author)
+	WHERE   a.name = "Long Qian" AND
+        b.name = "Nassir Navab"
+	CREATE (a)-[r:CO_AUTHOR]->(b)
+	RETURN a,b
+
+[4] Deletes all relationships
+	MATCH ()-[r:CO_AUTHOR]->()
+	DELETE r
+
+[5] Deletes one relationship related to given author
+	MATCH (n {name: 'Dejana Golenko'})-[r:CO_AUTHOR]->()
+	DELETE r

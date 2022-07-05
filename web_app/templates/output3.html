@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="static/css/second1.css">
+<link rel="stylesheet" href="static/css/mainbutton.css">
+<link rel="stylesheet" href="static/css/table.css">
+<div class="form-body">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+
+<!--            <div style="border: 3px solid; color : white; margin-bottom: 20px; border-style: dashed;-->
+<!--    border-radius: 9px; padding: 10px;">-->
+                <div class="table-wrapper">
+                    <table class="fl-table">
+                    <thead>
+                    <tr>
+                       <th>Research Article</th>
+                        <th>Most Inf. Author</th>
+                        <th>Page Rank</th>
+                    </tr>
+                    </thead>
+                    {% for i in authors %}
+                    <tr>
+                        <td>
+                            {{i.Research_Article}}
+                        </td>
+                        <td>
+                            {{i.Most_Influential_Author}}
+                        </td>
+                        <td>
+                            {{i.Page_Rank}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <!-- </div>-->
+
+			<a href="{{ url_for('main') }}">
+				<div class="form-button mt-3">
+				  <button id="submit" type="Home Page" class="button button3"> Back </button>
+				</div>
+			</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
